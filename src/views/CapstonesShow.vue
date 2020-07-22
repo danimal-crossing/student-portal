@@ -1,13 +1,12 @@
 <template>
   <div class="capstones-show">
-    <h1>Your Capstone:</h1>
-    <h2>Plant Swapp</h2>
-    <h2>A place to share plants with other plant lovers!</h2>
-   
-    <h2>{{student.capstone.name}}</h2>
-    <h2>{{student.capstone.description}}</h2>
-    <h2>{{student.capstone.url}}</h2>
-    <img v-bind:src="student.capstone.screenshot_url" v-bind:alt="student.capstone.name" />
+    <h2>{{student.first_name}} {{student.last_name}}</h2>
+    <div v-for="capstone in capstone">
+      <h4>{{capstone.name}}</h4>
+      <p>{{capstone.description}}</p>
+      <p><a :href="capstone.description">Link to capstone</a></p>
+      <p><img :src="capstone.screenshot_url"></p>
+    </div>
   </div>
 </template>
 
@@ -15,27 +14,21 @@
 import axios from "axios";
 
 export default {
-  data: function () {
+  data: function() {
     return {
-      // student: {},
-      student: {
-        capstone: {
-          description: "Plant sharing for everyone!",
-          url: "http://plants.com",
-          name: "Plant Swapp",
-          screenshot_url: "http://screenshot.com",
-          // student_id: "",
-        },
-      },
-      errors: [],
+      student: {},
+      capstone: [],
+      errors: []
     };
   },
-  // created: function () {
-  //   axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
-  //     // console.log("students show", response);
-  //     this.student.capstone = response.data;
-  //   });
-  // },
-  methods: {},
+  created: function() {
+    // Need to get ${current_student.id} logic to work (currently says "[Vue warn]: Error in created hook: "ReferenceError: current_student is not defined")
+    axios.get(`/api/students/1`).then(response => {
+      // console.log("students show", response);
+      this.student = response.data;
+      this.capstone = response.data.capstone;
+    });
+  },
+  methods: {}
 };
 </script>
