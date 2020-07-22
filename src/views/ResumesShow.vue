@@ -8,7 +8,7 @@
       <p>Phone: {{ student.phone_numer }}</p>
       <p>Bio: {{ student.bio }}</p>
       <p>LinkedIn: {{ student.linkedin_url }}</p>
-      <p>Twitter: {{ student.twitter }}</p>
+      <p>Twitter: {{ student.twitter_handle }}</p>
       <p>Personal Website: {{ student.website_url }}</p>
       <p>GitHub: {{ student.github_url }}</p>
       <p>Photo: {{ student.photo_url }}</p>
@@ -35,6 +35,7 @@
         <p>End Date: {{ education.end_date }}</p>
         <p>Details: {{ education.details }}</p>
       </div>
+      <router-link :to="`/resumes/1/edit`"> Edit  </router-link>
     </div>
   </div>
 </template>
@@ -45,6 +46,7 @@ export default {
   data: function() {
     return {
       student: {
+        id: 1,
         first_name: "Phil",
         last_name: "Pondo",
         email: "phil@gmail.com",

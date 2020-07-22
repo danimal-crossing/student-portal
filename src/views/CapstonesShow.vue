@@ -7,6 +7,9 @@
       <p><a :href="capstone.description">Link to capstone</a></p>
       <p><img :src="capstone.screenshot_url"></p>
     </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCapstoneModal"> Edit Capstone
+    </button>
+
   </div>
 </template>
 
