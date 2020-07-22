@@ -1,7 +1,7 @@
 <template>
   <div class="capstones-show">
     <h2>{{student.first_name}} {{student.last_name}}</h2>
-    <div v-for="capstone in capstone">
+    <div v-for="capstone in capstones">
       <h4>{{capstone.name}}</h4>
       <p>{{capstone.description}}</p>
       <p><a :href="capstone.description">Link to capstone</a></p>
@@ -17,7 +17,7 @@ export default {
   data: function() {
     return {
       student: {},
-      capstone: [],
+      capstones: [],
       errors: []
     };
   },
@@ -26,7 +26,7 @@ export default {
     axios.get(`/api/students/1`).then(response => {
       // console.log("students show", response);
       this.student = response.data;
-      this.capstone = response.data.capstone;
+      this.capstones = response.data.capstones;
     });
   },
   methods: {}
