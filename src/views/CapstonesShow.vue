@@ -3,10 +3,15 @@
     <h1>Your Capstone:</h1>
     <h2>Plant Swapp</h2>
     <h2>A place to share plants with other plant lovers!</h2>
-    <img v-bind:src="capstone.screenshot_url" v-bind:all="capstone.name" />
-    <h2>{{capstone.name}}</h2>
-    <h2>{{capstone.description}}</h2>
-    <h2>{{capstone.url}}</h2>
+   
+    <h2>{{student.capstone.name}}</h2>
+    <h2>{{student.capstone.description}}</h2>
+    <h2>{{student.capstone.url}}</h2>
+    <img v-bind:src="student.capstone.screenshot_url" v-bind:alt="student.capstone.name" />
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCapstoneModal"> Edit Capstone
+    </button>
   </div>
 </template>
 
@@ -16,20 +21,25 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      description: "Plant Swapp App",
-      url: "http:capstone.com",
-      name: "Plant Swapp",
-      screenshot_url: "screenshot",
-      // student_id: "",
+      // student: {},
+      student: {
+        capstone: {
+          description: "Plant sharing for everyone!",
+          url: "http://plants.com",
+          name: "Plant Swapp",
+          screenshot_url: "http://screenshot.com",
+          // student_id: "",
+        },
+      },
       errors: [],
     };
   },
-  created: function () {
-    axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
-      console.log("capstones show", response);
-      this.capstone = response.data;
-    });
-  },
+  // created: function () {
+  //   axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
+  //     // console.log("students show", response);
+  //     this.student.capstone = response.data;
+  //   });
+  // },
   methods: {},
 };
 </script>
