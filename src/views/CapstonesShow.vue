@@ -6,7 +6,7 @@
    
     <h2>{{student.capstone.name}}</h2>
     <h2>{{student.capstone.description}}</h2>
-    <h2>{{student.capstone.url}}</h2>
+    <h2>Capstone Link: {{student.capstone.url}}</h2>
     <img v-bind:src="student.capstone.screenshot_url" v-bind:alt="student.capstone.name" />
 
 
@@ -34,12 +34,12 @@ export default {
       errors: [],
     };
   },
-  // created: function () {
-  //   axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
-  //     // console.log("students show", response);
-  //     this.student.capstone = response.data;
-  //   });
-  // },
+  created: function () {
+    // axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
+    //   // console.log("students show", response);
+    //   this.student.capstone = response.data;
+    // });
+  },
   methods: {},
 };
 </script>

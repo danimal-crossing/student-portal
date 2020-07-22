@@ -40,12 +40,12 @@ export default {
       errors: [],
     };
   },
-  // created: function () {
-  //   axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
-  //     this.student.capstone = response.data;
-  //    console.log(this.student.capstone);
-  //   });
-  // },
+  created: function () {
+    axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
+      this.student.capstone = response.data;
+      console.log(this.student.capstone);
+    });
+  },
   methods: {
     editCapstone: function () {
       var params = {
@@ -54,12 +54,15 @@ export default {
         url: this.student.capstone.url,
         screenshot_url: this.student.capstone.screenshot_url,
       };
-      axios
-        .patch(`api/capstones/${this.capstone.id}`, params)
-        .then((response) => {
-          this.$router.push(`/capstones/${response.data.id}`);
-        });
-    },
+    //   axios
+    //     .patch(`api/capstones/${this.capstone.id}`, params)
+    //     .then((response) => {
+    //       this.$router.push(`/capstones/${response.data.id}`);
+    //     })
+    //     .catch((error) => {
+    //       this.errors = error.response.data.errors;
+    //     });
+    // },
   },
 };
 </script>
