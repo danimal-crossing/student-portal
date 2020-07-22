@@ -6,7 +6,8 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import ResumesShow from "../views/ResumesShow.vue";
 import CapstonesShow from "../views/CapstonesShow.vue";
-import CapstonesEdit from "../views/CapstonesEdit.vue";
+import ResumesEdit from '../views/ResumesEdit.vue';
+import CapstonesEdit from "../views/CapstonesEdit.vue"
 
 Vue.use(VueRouter);
 
@@ -42,10 +43,14 @@ const routes = [
     component: CapstonesShow,
   },
   {
+    path: "/resumes/:id/edit",
+    name: "resumes-edit",
+    component: ResumesEdit,
+  },
     path: "/capstones/:id/edit",
     name: "capstones-edit",
     component: CapstonesEdit,
-  },
+  }
 ];
 
 const router = new VueRouter({
