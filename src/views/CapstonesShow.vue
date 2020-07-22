@@ -7,7 +7,7 @@
     <h2>{{student.capstone.name}}</h2>
     <h2>{{student.capstone.description}}</h2>
     <h2>{{student.capstone.url}}</h2>
-    <img v-bind:src="student.capstone.screenshot_url" v-bind:all="student.capstone.name" />
+    <img v-bind:src="student.capstone.screenshot_url" v-bind:alt="student.capstone.name" />
   </div>
 </template>
 
