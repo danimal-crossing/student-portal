@@ -8,6 +8,10 @@
     <h2>{{student.capstone.description}}</h2>
     <h2>{{student.capstone.url}}</h2>
     <img v-bind:src="student.capstone.screenshot_url" v-bind:alt="student.capstone.name" />
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCapstoneModal"> Edit Capstone
+    </button>
   </div>
 </template>
 
