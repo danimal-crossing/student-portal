@@ -3,25 +3,37 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
+import ResumesShow from "../views/ResumesShow.vue";
+import CapstonesShow from "../views/CapstonesShow.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
   {
     path: "/about",
-    name: "About",
+    name: "about",
     component: About,
   },
   {
     path: "/login",
-    name: "Login",
+    name: "login",
     component: Login,
   },
+  {
+    path: "/resumes/:id",
+    name: "resumes-show",
+    component: ResumesShow,
+  },
+  {
+    path: "/capstones/:id",
+    name: "capstones-show",
+    component: CapstonesShow,
+  }
 ];
 
 const router = new VueRouter({
