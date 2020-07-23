@@ -1,6 +1,5 @@
 <template>
   <div class="capstones-edit">
-    <h1>Edit Your Capstone:</h1>
 
     <form v-on:submit.prevent="editCapstone()">
       <h1>Edit Capstone</h1>
@@ -34,25 +33,23 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      student: {
-        capstone: {},
-      },
+      capstone: {},
       errors: [],
     };
   },
   created: function () {
     axios.get(`/api/capstones/${this.$route.params.id}`).then((response) => {
-      this.student.capstone = response.data;
-      console.log(this.student.capstone);
+      this.capstone = response.data;
+      console.log(this.capstone);
     });
   },
   methods: {
     editCapstone: function () {
       var params = {
-        name: this.student.capstone.name,
-        description: this.student.capstone.description,
-        url: this.student.capstone.url,
-        screenshot_url: this.student.capstone.screenshot_url,
+        name: this.capstone.name,
+        description: this.capstone.description,
+        url: this.capstone.url,
+        screenshot_url: this.capstone.screenshot_url,
       };
       axios
         .patch(`api/capstones/${this.capstone.id}`, params)
