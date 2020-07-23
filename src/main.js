@@ -4,7 +4,7 @@ import router from "./router";
 import axios from "axios";
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
+  process.env.NODE_ENV === "development" ? "https://salty-everglades-72150.herokuapp.com/" : "/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
