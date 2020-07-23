@@ -42,7 +42,7 @@ export default {
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("student_id", response.data.student_id);
-          this.$router.push("/");
+          this.$router.push("/resume");
         })
         .catch((error) => {
           this.errors = ["Invalid email or password."];
