@@ -33,14 +33,14 @@ export default {
     });
   },
   methods: {
-    // destroyRecipe: function () {
-    //   if (confirm("Are you sure you want to delete this capstone?")) {
-    //     axios.delete(`/api/capstones/${this.capstone.id}`).then((response) => {
-    //       console.log("Successfully destroyed", response.data);
-    //       this.$router.push("/capstones");
-    //     });
-    //   }
-    // },
+    destroyCapstone: function () {
+      if (confirm("Are you sure you want to delete this capstone?")) {
+        axios.delete(`/api/capstones/${this.capstone.id}`).then((response) => {
+          console.log("Successfully destroyed", response.data);
+          this.$router.push("/capstones");
+        });
+      }
+    },
   },
 };
 </script>
