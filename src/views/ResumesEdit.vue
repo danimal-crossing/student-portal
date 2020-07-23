@@ -98,35 +98,37 @@
     </form>
 
     <!-- edit education -->
-    <form v-on:submit.prevent="editEducation()">
-      <h1>Update Education</h1>
+      <h1>Update Educations</h1>
        <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>College/University:</label>
-        <input type="text" class="form-control" v-model="educations[0].university_name">
+      </ul> 
+      <div v-for="education in educations">
+        <form v-on:submit.prevent="editEducation(education)">
+          <div class="form-group">
+            <label>College/University:</label>
+            <input type="text" class="form-control" v-model="education.university_name">
+          </div>
+          <div class="form-group">
+            <label>Degree: </label>
+            <input type="text" class="form-control" v-model="education.degree">
+          </div>
+          <div class="form-group">
+            <label>Start Date: </label>
+            <input type="text" class="form-control" v-model="education.start_date">
+          </div>
+          <div class="form-group">
+            <label>End Date: </label>
+            <input type="text" class="form-control" v-model="education.end_date">
+          </div>
+          <div class="form-group">
+            <label>Details: </label>
+            <input type="text" class="form-control" v-model="education.details">
+          </div>
+          <input type="submit" class="btn btn-primary" value="update">
+        </form>
       </div>
-      <div class="form-group">
-        <label>Degree: </label>
-        <input type="text" class="form-control" v-model="educations[0].degree">
-      </div>
-      <div class="form-group">
-        <label>Start Date: </label>
-        <input type="text" class="form-control" v-model="educations[0].start_date">
-      </div>
-      <div class="form-group">
-        <label>End Date: </label>
-        <input type="text" class="form-control" v-model="educations[0].end_date">
-      </div>
-      <div class="form-group">
-        <label>Details: </label>
-        <input type="text" class="form-control" v-model="educations[0].details">
-      </div>
-      <input type="submit" class="btn btn-primary" value="update">
-    </form>
 
-  </div>
+    </div>
 </template>
 
 
@@ -142,6 +144,7 @@ export default {
       experiences: [],
       educations: [],
       student_id: localStorage.getItem("student_id"),
+      educationId: "",
     };
   },
   created: function () {
@@ -212,19 +215,21 @@ export default {
     //       this.error = error.response.data.errors;
     //     });
     // },
-    editEducation: function () {
-      var educationId = this.educations[0].id;
+    getEducationId: function (id) {
+      this.educationId = id;
+    },
+    editEducation: function (education) {
       var params = {
-        university_name: this.educations[0].university_name,
-        degree: this.educations[0].degree,
-        start_date: this.educations[0].start_date,
-        end_date: this.educations[0].end_date,
-        details: this.educations[0].details,
+        university_name: education.university_name,
+        degree: education.degree,
+        start_date: education.start_date,
+        end_date: education.end_date,
+        details: education.details,
       };
       axios
-        .patch(`/api/educations/${educationId}`, params)
+        .patch(`/api/educations/${education.id}`, params)
         .then((response) => {
-          this.$router.push(`/resumes/${this.student.id}/edit`);
+          console.log(response.data);
         })
         .catch((error) => {
           this.error = error.response.data.errors;

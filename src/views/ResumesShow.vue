@@ -28,11 +28,13 @@
       </div>
 
       <h2>Education</h2>
-      <p>College/University: {{ educations[0].university_name }}</p>
-      <p>Degree: {{ educations[0].degree }}</p>
-      <p>Start Date: {{ educations[0].start_date }}</p>
-      <p>End Date: {{ educations[0].end_date }}</p>
-      <p>Details: {{ educations[0].details }}</p>
+      <div v-for="education in educations">
+        <p>College/University: {{ education.university_name }}</p>
+        <p>Degree: {{ education.degree }}</p>
+        <p>Start Date: {{ education.start_date }}</p>
+        <p>End Date: {{ education.end_date }}</p>
+        <p>Details: {{ education.details }}</p>
+      </div>
       <router-link :to="`/resumes/${this.student.id}/edit`"> Edit  </router-link>
     </div>
   </div>
