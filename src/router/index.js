@@ -29,12 +29,12 @@ const routes = [
     component: Logout,
   },
   {
-    path: "/resumes/:id",
+    path: "/resume",
     name: "resumes-show",
     component: ResumesShow,
   },
   {
-    path: "/capstones/:id",
+    path: "/capstones",
     name: "capstones-show",
     component: CapstonesShow,
   },
