@@ -1,7 +1,7 @@
 
 <template>
   <div class="resumes-edit">
-
+    <!-- edit student info -->
     <form v-on:submit.prevent="editStudent()">
       <h1>Update Student</h1>
        <ul>
@@ -49,152 +49,82 @@
       </div>
       <input type="submit" class="btn btn-primary" value="update">
     </form>
-<!-- 
-     <form v-on:submit.prevent="editExperiences()">
+
+    <!-- edit experiences - backend API does not have this controller -->
+    <!-- <form v-on:submit.prevent="editExperiences()">
       <h1>Update Experiences</h1>
        <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
-      <div class="form-group">
-        <label>Employer:</label>
-        <input type="text" class="form-control" v-model="experiences.company_name">
+      <div v-for="experience in student.experiences">
+        <div class="form-group">
+          <label>Employer:</label>
+          <input type="text" class="form-control" v-model="experience.company_name">
+        </div>
+        <div class="form-group">
+          <label>Job Title: </label>
+          <input type="text" class="form-control" v-model="experience.job_title">
+        </div>
+        <div class="form-group">
+          <label>Start Date: </label>
+          <input type="text" class="form-control" v-model="experience.start_date">
+        </div>
+        <div class="form-group">
+          <label>End Date: </label>
+          <input type="text" class="form-control" v-model="experience.end_date">
+        </div>
+        <div class="form-group">
+          <label>Details: </label>
+          <input type="text" class="form-control" v-model="experience.details">
+        </div>
       </div>
-      <div class="form-group">
-        <label>last name:</label>
-        <input type="text" class="form-control" v-model="student.last_name">
-      </div>
-      <div class="form-group">
-        <label> email:</label>
-        <input type="text" class="form-control" v-model="student.email">
-      </div>
-      <div class="form-group">
-        <label> Phone:</label>
-        <input type="text" class="form-control" v-model="student.phone">
-      </div>
-       <div class="form-group">
-        <label> Bio:</label>
-        <input type="text" class="form-control" v-model="student.bio">
-      </div>
-      <div class="form-group">
-        <label> LinkedIn:</label>
-        <input type="text" class="form-control" v-model="student.linkedin_url">
-      </div>
-      <div class="form-group">
-        <label> twitter:</label>
-        <input type="text" class="form-control" v-model="student.twitter_handle">
-      </div>
-      <div class="form-group">
-        <label> Personal website:</label>
-        <input type="text" class="form-control" v-model="student.website_url">
-      </div>
-       <div class="form-group">
-        <label> GitHub:</label>
-        <input type="text" class="form-control" v-model="student.github_url">
-      </div>
-       <div class="form-group">
-        <label>  Photo:</label>
-        <input type="text" class="form-control" v-model="student.photo_url">
-      </div>
+      
       <input type="submit" class="btn btn-primary" value="update">
-    </form>
+    </form> -->
 
-
-     <form v-on:submit.prevent="editSkills()">
+    <!-- edit skills -->
+    <form v-on:submit.prevent="editSkills()">
       <h1>Update Skills</h1>
        <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
-      <div class="form-group">
-        <label>first name:</label>
-        <input type="text" class="form-control" v-model="student.first_name">
+      <div class="form-group" v-for="skill in skills">
+        <label>Name: </label>
+        <input type="text" class="form-control" v-model="skill.name">
       </div>
-      <div class="form-group">
-        <label>last name:</label>
-        <input type="text" class="form-control" v-model="student.last_name">
-      </div>
-      <div class="form-group">
-        <label> email:</label>
-        <input type="text" class="form-control" v-model="student.email">
-      </div>
-      <div class="form-group">
-        <label> Phone:</label>
-        <input type="text" class="form-control" v-model="student.phone">
-      </div>
-       <div class="form-group">
-        <label> Bio:</label>
-        <input type="text" class="form-control" v-model="student.bio">
-      </div>
-      <div class="form-group">
-        <label> LinkedIn:</label>
-        <input type="text" class="form-control" v-model="student.linkedin_url">
-      </div>
-      <div class="form-group">
-        <label> twitter:</label>
-        <input type="text" class="form-control" v-model="student.twitter_handle">
-      </div>
-      <div class="form-group">
-        <label> Personal website:</label>
-        <input type="text" class="form-control" v-model="student.website_url">
-      </div>
-       <div class="form-group">
-        <label> GitHub:</label>
-        <input type="text" class="form-control" v-model="student.github_url">
-      </div>
-       <div class="form-group">
-        <label>  Photo:</label>
-        <input type="text" class="form-control" v-model="student.photo_url">
-      </div>
+      <label>Add a skill: </label>
+      <input type="text" class="form-control" v-model="this.skill.name">
       <input type="submit" class="btn btn-primary" value="update">
     </form>
 
-
-     <form v-on:submit.prevent="editEducation()">
+    <!-- edit education -->
+    <form v-on:submit.prevent="editEducation()">
       <h1>Update Education</h1>
        <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
       <div class="form-group">
-        <label>first name:</label>
-        <input type="text" class="form-control" v-model="student.first_name">
+        <label>College/University:</label>
+        <input type="text" class="form-control" v-model="educations[0].university_name">
       </div>
       <div class="form-group">
-        <label>last name:</label>
-        <input type="text" class="form-control" v-model="student.last_name">
+        <label>Degree: </label>
+        <input type="text" class="form-control" v-model="educations[0].degree">
       </div>
       <div class="form-group">
-        <label> email:</label>
-        <input type="text" class="form-control" v-model="student.email">
+        <label>Start Date: </label>
+        <input type="text" class="form-control" v-model="educations[0].start_date">
       </div>
       <div class="form-group">
-        <label> Phone:</label>
-        <input type="text" class="form-control" v-model="student.phone">
-      </div>
-       <div class="form-group">
-        <label> Bio:</label>
-        <input type="text" class="form-control" v-model="student.bio">
+        <label>End Date: </label>
+        <input type="text" class="form-control" v-model="educations[0].end_date">
       </div>
       <div class="form-group">
-        <label> LinkedIn:</label>
-        <input type="text" class="form-control" v-model="student.linkedin_url">
-      </div>
-      <div class="form-group">
-        <label> twitter:</label>
-        <input type="text" class="form-control" v-model="student.twitter_handle">
-      </div>
-      <div class="form-group">
-        <label> Personal website:</label>
-        <input type="text" class="form-control" v-model="student.website_url">
-      </div>
-       <div class="form-group">
-        <label> GitHub:</label>
-        <input type="text" class="form-control" v-model="student.github_url">
-      </div>
-       <div class="form-group">
-        <label>  Photo:</label>
-        <input type="text" class="form-control" v-model="student.photo_url">
+        <label>Details: </label>
+        <input type="text" class="form-control" v-model="educations[0].details">
       </div>
       <input type="submit" class="btn btn-primary" value="update">
-    </form> -->
+    </form>
 
   </div>
 </template>
@@ -203,35 +133,28 @@
 <script>
 import axios from "axios";
 export default {
-  data: function() {
+  data: function () {
     return {
       errors: [],
-      student: {
-        id: 1,
-        first_name: "Phil",
-        last_name: "Pondo",
-        email: "phil@gmail.com",
-        password_digest: "jhgkjh13g4k1h34gafadf",
-        phone_number: "2001110101",
-        bio: "There once was a cat in a hat",
-        linkedin_url: "www.linkedin.com/in/phillippondo",
-        twitter_handle: "@philpondo",
-        website_url: "www.philpondo.com",
-        resume_url: "wwww.philpondoresume.com",
-        github_url: "www.github.com/philpondo",
-        photo_url:
-          "https://vignette.wikia.nocookie.net/yugioh/images/c/c0/ExodiatheForbiddenOne-TF04-JP-VG.jpg/revision/latest?cb=20120420185052"
-      }
+      student: {},
+      skills: [],
+      skill: "",
+      experiences: [],
+      educations: [],
+      student_id: localStorage.getItem("student_id"),
     };
   },
-  created: function() {
-    // axios.get(`/api/movies/${this.$route.params.id}`).then(response => {
-    //   this.movie = response.data;
-    //   console.log(this.movie);
-    // });
+  created: function () {
+    axios.get(`/api/students/${this.student_id}`).then((response) => {
+      this.student = response.data;
+      this.skills = response.data.skills;
+      this.experiences = response.data.experiences;
+      this.educations = response.data.educations;
+      console.log(this.student);
+    });
   },
   methods: {
-    editStudent: function() {
+    editStudent: function () {
       var params = {
         first_name: this.student.first_name,
         last_name: this.student.last_name,
@@ -243,17 +166,69 @@ export default {
         website_url: this.student.website_url,
         resume_url: this.student.resume_url,
         github_url: this.student.github_url,
-        photo_url: this.student.photo_url
+        photo_url: this.student.photo_url,
       };
       axios
-        .patch(`/api/resumes/1`, params)
-        .then(response => {
-          this.$router.push(`/resumes/1`);
+        .patch(`/api/students/1`, params)
+        .then((response) => {
+          this.$router.push(`/resumes/1/edit`);
         })
-        .catch(error => {
+        .catch((error) => {
           this.error = error.response.data.errors;
         });
-    }
-  }
+    },
+    // !!!! backend API does not have experience edit currently - might need a "forEach" here
+    // editExperience: function () {
+    //   var params = {
+    //     company_name: this.experience.first_name,
+    //     job_title: this.experience.job_title,
+    //     start_date: this.experience.start_date,
+    //     end_date: this.experience.end_date,
+    //     details: this.experience.details,
+    //   };
+    //   axios
+    //     .patch(`/api/experiences/1`, params)
+    //     .then((response) => {
+    //       this.$router.push(`/expriences/1`);
+    //     })
+    //     .catch((error) => {
+    //       this.error = error.response.data.errors;
+    //     });
+    // },
+
+    // 7/23: broken currently due to no API route for skills -JCO
+    // editSkills: function () {
+    //   var params = [];
+    //   this.skills.array.forEach((skill) => {
+    //     params.push(skill);
+    //   });
+    //   params.push(this.skill);
+    //   axios
+    //     .patch(`/api/skills/1`, params)
+    //     .then((response) => {
+    //       this.$router.push(`/resumes/${this.student.id}/edit`);
+    //     })
+    //     .catch((error) => {
+    //       this.error = error.response.data.errors;
+    //     });
+    // },
+    editEducation: function () {
+      var params = {
+        university_name: this.educations[0].university_name,
+        degree: this.educations[0].degree,
+        start_date: this.educations[0].start_date,
+        end_date: this.educations[0].end_date,
+        details: this.educations[0].details,
+      };
+      axios
+        .patch(`/api/educations/1`, params)
+        .then((response) => {
+          this.$router.push(`/resumes/${this.student.id}/edit`);
+        })
+        .catch((error) => {
+          this.error = error.response.data.errors;
+        });
+    },
+  },
 };
 </script>
