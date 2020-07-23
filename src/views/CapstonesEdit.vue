@@ -25,7 +25,7 @@
       <input type="submit" class="btn btn-primary" value="Update">
     </form>
   </div>
-  <router-link 
+
 </template>
 
 <script>
