@@ -2,6 +2,7 @@
   <div class="resumes-show">
     <div>
       <h3>Personal Info</h3>
+      <p><img :src="student.photo_url" :alt="student.first_name"/></p>
       <p>First Name: {{ student.first_name }}</p>
       <p>Last Name: {{ student.last_name }}</p>
       <p>Email: {{ student.email }}</p>
@@ -11,7 +12,6 @@
       <p>Twitter: {{ student.twitter_handle }}</p>
       <p>Personal Website: {{ student.website_url }}</p>
       <p>GitHub: {{ student.github_url }}</p>
-      <p>Photo: {{ student.photo_url }}</p>
 
       <h2>Experiences</h2>
       <div v-for="experience in student.experiences">
@@ -28,15 +28,23 @@
       </div>
 
       <h2>Education</h2>
-      <p>College/University: {{ educations[0].university_name }}</p>
-      <p>Degree: {{ educations[0].degree }}</p>
-      <p>Start Date: {{ educations[0].start_date }}</p>
-      <p>End Date: {{ educations[0].end_date }}</p>
-      <p>Details: {{ educations[0].details }}</p>
+      <div v-for="education in educations">
+        <p>College/University: {{ education.university_name }}</p>
+        <p>Degree: {{ education.degree }}</p>
+        <p>Start Date: {{ education.start_date }}</p>
+        <p>End Date: {{ education.end_date }}</p>
+        <p>Details: {{ education.details }}</p>
+      </div>
       <router-link :to="`/resumes/${this.student.id}/edit`"> Edit  </router-link>
     </div>
   </div>
 </template>
+
+<style>
+img {
+  width: 200px;
+}
+</style>
 
 <script>
 import axios from "axios";
