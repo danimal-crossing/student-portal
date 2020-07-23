@@ -7,6 +7,7 @@ import ResumesShow from "../views/ResumesShow.vue";
 import CapstonesShow from "../views/CapstonesShow.vue";
 import ResumesEdit from '../views/ResumesEdit.vue';
 import CapstonesEdit from "../views/CapstonesEdit.vue";
+import EducationsNew from "../views/EducationsNew.vue";
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,11 @@ const routes = [
     path: "/capstones/:id/edit",
     name: "capstones-edit",
     component: CapstonesEdit,
+  },
+  {
+    path: "/educations/new",
+    name: "educations-new",
+    component: EducationsNew,
   },
 ];
 

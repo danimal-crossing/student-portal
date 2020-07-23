@@ -116,11 +116,11 @@
           </div>
           <div class="form-group">
             <label>Start Date: </label>
-            <input type="text" class="form-control" v-model="education.start_date">
+            <input type="date" class="form-control" v-model="education.start_date">
           </div>
           <div class="form-group">
             <label>End Date: </label>
-            <input type="text" class="form-control" v-model="education.end_date">
+            <input type="date" class="form-control" v-model="education.end_date">
           </div>
           <div class="form-group">
             <label>Details: </label>
@@ -129,6 +129,7 @@
           <input type="submit" class="btn btn-primary" value="update">
         </form>
       </div>
+      <router-link to="/educations/new">Create New Education</router-link>
 
     </div>
 </template>
