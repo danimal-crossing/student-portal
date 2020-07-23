@@ -5,8 +5,8 @@
       <router-link to="/about">About</router-link> | 
       <router-link to="/login">Login</router-link> | 
       <router-link to="/logout">Logout</router-link> | 
-      <router-link to="/resumes/:id">Resume</router-link> |
-      <router-link to="/capstones/:id">Capstone</router-link>
+      <router-link to="/resume">Resume</router-link> |
+      <router-link to="/capstones">Capstones</router-link>
     </div>
     <router-view/>
   </div>

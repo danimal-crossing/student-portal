@@ -213,6 +213,7 @@ export default {
     //     });
     // },
     editEducation: function () {
+      var educationId = this.educations[0].id;
       var params = {
         university_name: this.educations[0].university_name,
         degree: this.educations[0].degree,
@@ -221,7 +222,7 @@ export default {
         details: this.educations[0].details,
       };
       axios
-        .patch(`/api/educations/1`, params)
+        .patch(`/api/educations/${educationId}`, params)
         .then((response) => {
           this.$router.push(`/resumes/${this.student.id}/edit`);
         })

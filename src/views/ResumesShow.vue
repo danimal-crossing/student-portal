@@ -2,6 +2,7 @@
   <div class="resumes-show">
     <div>
       <h3>Personal Info</h3>
+      <p><img :src="student.photo_url" :alt="student.first_name"/></p>
       <p>First Name: {{ student.first_name }}</p>
       <p>Last Name: {{ student.last_name }}</p>
       <p>Email: {{ student.email }}</p>
@@ -11,7 +12,6 @@
       <p>Twitter: {{ student.twitter_handle }}</p>
       <p>Personal Website: {{ student.website_url }}</p>
       <p>GitHub: {{ student.github_url }}</p>
-      <p>Photo: {{ student.photo_url }}</p>
 
       <h2>Experiences</h2>
       <div v-for="experience in student.experiences">
@@ -37,6 +37,12 @@
     </div>
   </div>
 </template>
+
+<style>
+img {
+  width: 200px;
+}
+</style>
 
 <script>
 import axios from "axios";
