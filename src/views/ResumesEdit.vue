@@ -51,12 +51,12 @@
     </form>
 
     <!-- edit experiences - backend API does not have this controller -->
-    <!-- <form v-on:submit.prevent="editExperiences()">
-      <h1>Update Experiences</h1>
-       <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div v-for="experience in student.experiences">
+    <h1>Update Experiences</h1>
+    <ul>
+      <li class="text-danger" v-for="error in errors">{{ error }}</li>
+    </ul>
+    <div v-for="experience in experiences">
+      <form v-on:submit.prevent="editExperiences(experience)">
         <div class="form-group">
           <label>Employer:</label>
           <input type="text" class="form-control" v-model="experience.company_name">
@@ -77,10 +77,9 @@
           <label>Details: </label>
           <input type="text" class="form-control" v-model="experience.details">
         </div>
-      </div>
-      
-      <input type="submit" class="btn btn-primary" value="update">
-    </form> -->
+        <input type="submit" class="btn btn-primary" value="update">
+      </form>
+    </div>
 
     <!-- edit skills -->
     <form v-on:submit.prevent="editSkills()">
@@ -180,24 +179,23 @@ export default {
           this.error = error.response.data.errors;
         });
     },
-    // !!!! backend API does not have experience edit currently - might need a "forEach" here
-    // editExperience: function () {
-    //   var params = {
-    //     company_name: this.experience.first_name,
-    //     job_title: this.experience.job_title,
-    //     start_date: this.experience.start_date,
-    //     end_date: this.experience.end_date,
-    //     details: this.experience.details,
-    //   };
-    //   axios
-    //     .patch(`/api/experiences/1`, params)
-    //     .then((response) => {
-    //       this.$router.push(`/expriences/1`);
-    //     })
-    //     .catch((error) => {
-    //       this.error = error.response.data.errors;
-    //     });
-    // },
+    editExperience: function (experience) {
+      var params = {
+        company_name: experience.first_name,
+        job_title: experience.job_title,
+        start_date: experience.start_date,
+        end_date: experience.end_date,
+        details: experience.details,
+      };
+      axios
+        .patch(`/api/experiences/${experience.id}`, params)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          this.error = error.response.data.errors;
+        });
+    },
 
     // 7/23: broken currently due to no API route for skills -JCO
     // editSkills: function () {
