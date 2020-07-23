@@ -54,7 +54,7 @@ export default {
       axios
         .patch(`api/capstones/${this.capstone.id}`, params)
         .then((response) => {
-          this.$router.push(`/capstones/${response.data.id}`);
+          this.$router.push("/capstones");
         })
         .catch((error) => {
           this.error = error.response.data.errors;
