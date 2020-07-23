@@ -4,10 +4,9 @@
     <div v-for="capstone in capstones">
       <h4>{{capstone.name}}</h4>
       <p>{{capstone.description}}</p>
-      <p><a :href="capstone.description">Link to capstone</a></p>
       <p><img :src="capstone.screenshot_url"></p>
+      <p><a :href="capstone.description">View Capstone</a> // <router-link :to="`/capstones/${capstone.id}/edit`">Edit Capstone Info</router-link></p>
     </div>
-        <router-link :to="`/resumes/1/edit`"> Edit  </router-link>
 
   </div>
 </template>
@@ -21,12 +20,12 @@ export default {
       student: {},
       capstones: [],
       errors: [],
+      student_id: localStorage.getItem("student_id"),
     };
   },
   created: function () {
     // Need to get ${current_student.id} logic to work (currently says "[Vue warn]: Error in created hook: "ReferenceError: current_student is not defined")
-    axios.get(`/api/students/${current_student.id}`).then((response) => {
-      // console.log("students show", response);
+    axios.get(`/api/students/${this.student_id}`).then((response) => {
       this.student = response.data;
       this.capstones = response.data.capstones;
     });
