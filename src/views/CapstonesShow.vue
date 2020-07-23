@@ -25,7 +25,7 @@ export default {
   },
   created: function () {
     // Need to get ${current_student.id} logic to work (currently says "[Vue warn]: Error in created hook: "ReferenceError: current_student is not defined")
-    axios.get(`/api/students/1`).then((response) => {
+    axios.get(`/api/students/${current_student.id}`).then((response) => {
       // console.log("students show", response);
       this.student = response.data;
       this.capstones = response.data.capstones;
