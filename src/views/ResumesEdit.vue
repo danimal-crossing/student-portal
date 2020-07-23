@@ -80,6 +80,7 @@
         <input type="submit" class="btn btn-primary" value="update">
       </form>
     </div>
+    <router-link to="/experiences/new">Add experience</router-link>
 
     <!-- edit skills -->
     <h1>Update Skills</h1>
@@ -139,7 +140,7 @@
 <script>
 import axios from "axios";
 export default {
-  data: function () {
+  data: function() {
     return {
       errors: [],
       student: {},
@@ -149,11 +150,11 @@ export default {
       educations: [],
       student_id: localStorage.getItem("student_id"),
       educationId: "",
-      newSkillName: "",
+      newSkillName: ""
     };
   },
-  created: function () {
-    axios.get(`/api/students/${this.student_id}`).then((response) => {
+  created: function() {
+    axios.get(`/api/students/${this.student_id}`).then(response => {
       this.student = response.data;
       this.skills = response.data.skills;
       this.experiences = response.data.experiences;
@@ -162,7 +163,7 @@ export default {
     });
   },
   methods: {
-    editStudent: function () {
+    editStudent: function() {
       var params = {
         first_name: this.student.first_name,
         last_name: this.student.last_name,
@@ -174,71 +175,71 @@ export default {
         website_url: this.student.website_url,
         resume_url: this.student.resume_url,
         github_url: this.student.github_url,
-        photo_url: this.student.photo_url,
+        photo_url: this.student.photo_url
       };
       axios
         .patch(`/api/students/${this.student_id}`, params)
-        .then((response) => {
+        .then(response => {
           console.log("Updated Info:", response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           this.error = error.response.data.errors;
         });
     },
-    editExperiences: function (experience) {
+    editExperiences: function(experience) {
       var params = {
         company_name: experience.first_name,
         job_title: experience.job_title,
         start_date: experience.start_date,
         end_date: experience.end_date,
-        details: experience.details,
+        details: experience.details
       };
       axios
         .patch(`/api/experiences/${experience.id}`, params)
-        .then((response) => {
+        .then(response => {
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           this.error = error.response.data.errors;
         });
     },
 
-    destroySkill: function (skill) {
-      axios.delete(`/api/skills/${skill.id}`).then((response) => {
+    destroySkill: function(skill) {
+      axios.delete(`/api/skills/${skill.id}`).then(response => {
         console.log("Skill deleted");
       });
     },
-    editEducation: function (education) {
+    editEducation: function(education) {
       var params = {
         university_name: education.university_name,
         degree: education.degree,
         start_date: education.start_date,
         end_date: education.end_date,
-        details: education.details,
+        details: education.details
       };
       axios
         .patch(`/api/educations/${education.id}`, params)
-        .then((response) => {
+        .then(response => {
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           this.error = error.response.data.errors;
         });
     },
-    newSkill: function () {
+    newSkill: function() {
       var params = {
-        name: this.newSkillName,
+        name: this.newSkillName
       };
       axios
         .post(`/api/skills`, params)
-        .then((response) => {
+        .then(response => {
           console.log(response.data);
           this.skills.push(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           this.error = error.response.data.errors;
         });
-    },
-  },
+    }
+  }
 };
 </script>
