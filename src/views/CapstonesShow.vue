@@ -7,8 +7,7 @@
       <p><a :href="capstone.description">Link to capstone</a></p>
       <p><img :src="capstone.screenshot_url"></p>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCapstoneModal"> Edit Capstone
-    </button>
+        <router-link :to="`/resumes/1/edit`"> Edit  </router-link>
 
   </div>
 </template>
@@ -17,21 +16,21 @@
 import axios from "axios";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       student: {},
       capstones: [],
-      errors: []
+      errors: [],
     };
   },
-  created: function() {
+  created: function () {
     // Need to get ${current_student.id} logic to work (currently says "[Vue warn]: Error in created hook: "ReferenceError: current_student is not defined")
-    axios.get(`/api/students/1`).then(response => {
+    axios.get(`/api/students/1`).then((response) => {
       // console.log("students show", response);
       this.student = response.data;
       this.capstones = response.data.capstones;
     });
   },
-  methods: {}
+  methods: {},
 };
 </script>
