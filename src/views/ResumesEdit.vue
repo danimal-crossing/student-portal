@@ -82,18 +82,21 @@
     </div>
 
     <!-- edit skills -->
-    <form v-on:submit.prevent="editSkills()">
-      <h1>Update Skills</h1>
-       <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group" v-for="skill in skills">
+    <h1>Update Skills</h1>
+      <ul>
+      <li class="text-danger" v-for="error in errors">{{ error }}</li>
+    </ul>
+    <div class="form-group" v-for="skill in skills">
+      <form v-on:submit.prevent="editSkills(skill)">
         <label>Name: </label>
         <input type="text" class="form-control" v-model="skill.name">
-      </div>
-      <label>Add a skill: </label>
-      <input type="text" class="form-control" v-model="this.skill.name">
-      <input type="submit" class="btn btn-primary" value="update">
+        <input type="submit" class="btn btn-primary" value="update">
+      </form>
+    </div>
+    <form v-on:submit.prevent="newSkill()">
+        <label>Add a skill: </label>
+        <input type="text" class="form-control" v-model="newSkillName">
+        <input type="submit" class="btn btn-primary" value="Add Skill">
     </form>
 
     <!-- edit education -->
@@ -144,6 +147,7 @@ export default {
       educations: [],
       student_id: localStorage.getItem("student_id"),
       educationId: "",
+      newSkillName: "",
     };
   },
   created: function () {
@@ -171,9 +175,9 @@ export default {
         photo_url: this.student.photo_url,
       };
       axios
-        .patch(`/api/students/1`, params)
+        .patch(`/api/students/${this.student_id}`, params)
         .then((response) => {
-          this.$router.push(`/resumes/1/edit`);
+          console.log("Updated Info:", response.data);
         })
         .catch((error) => {
           this.error = error.response.data.errors;
@@ -197,24 +201,18 @@ export default {
         });
     },
 
-    // 7/23: broken currently due to no API route for skills -JCO
-    // editSkills: function () {
-    //   var params = [];
-    //   this.skills.array.forEach((skill) => {
-    //     params.push(skill);
-    //   });
-    //   params.push(this.skill);
-    //   axios
-    //     .patch(`/api/skills/1`, params)
-    //     .then((response) => {
-    //       this.$router.push(`/resumes/${this.student.id}/edit`);
-    //     })
-    //     .catch((error) => {
-    //       this.error = error.response.data.errors;
-    //     });
-    // },
-    getEducationId: function (id) {
-      this.educationId = id;
+    editSkills: function (skill) {
+      var params = {
+        name: skill,
+      };
+      axios
+        .patch(`/api/skills/${skill.id}`, params)
+        .then((response) => {
+          console.log("Updated Info:", response.data);
+        })
+        .catch((error) => {
+          this.error = error.response.data.errors;
+        });
     },
     editEducation: function (education) {
       var params = {
@@ -228,6 +226,20 @@ export default {
         .patch(`/api/educations/${education.id}`, params)
         .then((response) => {
           console.log(response.data);
+        })
+        .catch((error) => {
+          this.error = error.response.data.errors;
+        });
+    },
+    newSkill: function () {
+      var params = {
+        name: this.newSkillName,
+      };
+      axios
+        .post(`/api/skills`, params)
+        .then((response) => {
+          console.log(response.data);
+          this.skills.push(response.data);
         })
         .catch((error) => {
           this.error = error.response.data.errors;
