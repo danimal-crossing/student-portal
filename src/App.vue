@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-if="!isLoggedIn()" to="/login">Login</router-link> | 
       <router-link v-if="isLoggedIn()" to="/resume">Resume</router-link> |
       <router-link v-if="isLoggedIn()" to="/capstones">Capstones</router-link> |
       <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link>

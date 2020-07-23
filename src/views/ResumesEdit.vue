@@ -87,12 +87,13 @@
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
     <div class="form-group" v-for="skill in skills">
-      <form v-on:submit.prevent="editSkills(skill)">
+      <form v-on:submit.prevent="destroySkill(skill)">
         <label>Name: </label>
         <input type="text" class="form-control" v-model="skill.name">
-        <input type="submit" class="btn btn-primary" value="update">
+        <input type="submit" class="btn btn-primary" value="Delete">
       </form>
     </div>
+    <br>
     <form v-on:submit.prevent="newSkill()">
         <label>Add a skill: </label>
         <input type="text" class="form-control" v-model="newSkillName">
@@ -184,7 +185,7 @@ export default {
           this.error = error.response.data.errors;
         });
     },
-    editExperience: function (experience) {
+    editExperiences: function (experience) {
       var params = {
         company_name: experience.first_name,
         job_title: experience.job_title,
@@ -202,18 +203,10 @@ export default {
         });
     },
 
-    editSkills: function (skill) {
-      var params = {
-        name: skill,
-      };
-      axios
-        .patch(`/api/skills/${skill.id}`, params)
-        .then((response) => {
-          console.log("Updated Info:", response.data);
-        })
-        .catch((error) => {
-          this.error = error.response.data.errors;
-        });
+    destroySkill: function (skill) {
+      axios.delete(`/api/skills/${skill.id}`).then((response) => {
+        console.log("Skill deleted");
+      });
     },
     editEducation: function (education) {
       var params = {
