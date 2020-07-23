@@ -5,7 +5,9 @@
       <h4>{{capstone.name}}</h4>
       <p>{{capstone.description}}</p>
       <p><img :src="capstone.screenshot_url"></p>
-      <p><a :href="capstone.description">View Capstone</a> // <router-link :to="`/capstones/${capstone.id}/edit`">Edit Capstone Info</router-link></p>
+      <p><a :href="capstone.description">View Capstone</a> 
+      // <router-link :to="`/capstones/${capstone.id}/edit`">Edit Capstone Info</router-link>
+       // <router-link :to="`/capstones/$capstone.id}`">Delete Capstone</router-link> </p>
     </div>
 
   </div>
@@ -30,6 +32,15 @@ export default {
       this.capstones = response.data.capstones;
     });
   },
-  methods: {},
+  methods: {
+    // destroyRecipe: function () {
+    //   if (confirm("Are you sure you want to delete this capstone?")) {
+    //     axios.delete(`/api/capstones/${this.capstone.id}`).then((response) => {
+    //       console.log("Successfully destroyed", response.data);
+    //       this.$router.push("/capstones");
+    //     });
+    //   }
+    // },
+  },
 };
 </script>
